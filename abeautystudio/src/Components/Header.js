@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Header.css";
+// import bikini from "./images/first-bikini-wax.jpg";
 
 function Header() {
     return (
@@ -13,9 +14,9 @@ function Header() {
             
                 <button className="checkin">Check In</button>
             
-            
-            <div>
-                <h1 style={{color:"blue"}}>ANU'S BEAUTY STUDIO</h1>
+            <div className="welcomepage">
+                <h1 style={{color:"navy"}}>ANU'S BEAUTY STUDIO</h1>
+                {/* <img src={bikini} alt="attractive" /> */}
             </div>
             
         </div>
