@@ -5,7 +5,7 @@ import Girl2 from "./images/girl2.jpg";
 
 function Testimonials() {
     return (
-        <div className="wrapper">
+        <div id= "Testimonials" className="wrapper">
             <h1 className="welcomepage">TESTIMONIALS </h1>
             <div className="flex">
                 <img src={Girl1} alt="girl1" className="item1"/>

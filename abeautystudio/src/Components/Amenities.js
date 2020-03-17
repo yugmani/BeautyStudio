@@ -6,7 +6,7 @@ import Waxing from "./images/waxinglegs.jpg";
 import Tattoo from "./images/henna-tattoo.jpg";
 function Amenities() {
     return (
-        <div className="wrapper">
+        <div id = "Services" className="wrapper">
             <h1 className="welcomepage">SERVICES </h1>
             <div className="flex">
                     

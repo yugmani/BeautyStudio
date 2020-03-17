@@ -35,7 +35,7 @@ function Footer() {
                 <small>Designed & Built by Yug Gurung</small>
             </div>
 
-            {/*  */}
+            
         </div>
     )
 }

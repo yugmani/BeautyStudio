@@ -2,7 +2,7 @@ import React from 'react'
 
 function Contact() {
     return (
-        <div className="wrapper">
+        <div id = "Contact" className="wrapper">
            <h1 className="welcomepage">CONTACT US </h1>
             <form action="mail to:yugmani@yahoo.com" method="POST" enctype="text/plain">
                     <label for="fullname">Name</label>

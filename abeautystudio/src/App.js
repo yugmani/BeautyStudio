@@ -5,15 +5,27 @@ import Testimonials from "./Components/Testimonials";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
 
+import CustomerList from "./Components/CustomerList";
+import EditCustomer from "./Components/EditCustomer";
+import CreateCustomer from "./Components/CreateCustomer";
+
+import {
+    BrowserRouter as Router,
+    Route 
+} from "react-router-dom";
+
 function App() {
   return (
-    <div className="container-fluid">
+    <Router className="container-fluid">
       <Header />
       <Amenities />
       <Testimonials />
       <Contact />
       <Footer />
-    </div>
+      <Route path="/list" exact component = {CustomerList} />
+      <Route path="/edit:id" exact component = {EditCustomer} />
+      <Route path="/create" exact component = {CreateCustomer} />
+    </Router>
   );
 }
 
