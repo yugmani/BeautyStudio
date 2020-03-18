@@ -16,17 +16,22 @@ import {
 
 function App() {
   return (
-    <Router className="container-fluid">
+    <div className="container-fluid">
+      <Router >
       <Header />
       <Amenities />
       <Testimonials />
       <Contact />
       <Footer />
-      <Route path="/list" exact component = {CustomerList} />
-      <Route path="/edit:id" exact component = {EditCustomer} />
-      <Route path="/create" exact component = {CreateCustomer} />
-    </Router>
+        
+            <Route path="/list" exact component = {CustomerList} />
+            <Route path="/edit:id" exact component = {EditCustomer} />
+            <Route path="/create" exact component = {CreateCustomer} />
+
+        </Router>
+    </div>
   );
 }
 
 export default App;
+

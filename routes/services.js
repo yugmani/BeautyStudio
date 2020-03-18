@@ -14,11 +14,11 @@ router.route("/").get((req, res) => {
 
 
 router.route('/add').post((req, res)=>{
-  const task = req.body.task;
+  const service = req.body.service;
   const price = req.body.price;
 
   const newService = new Service({
-    task,
+    service,
     price,
   
   });

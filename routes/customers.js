@@ -2,12 +2,9 @@ const router = require("express").Router();
 const Customer = require("../models/customer");
 
 router.route("/").get((req, res) => {
-  // Use a regular expression to search titles for req.query.q
-  // using case insensitive match. https://docs.mongodb.com/manual/reference/operator/query/regex/index.html
-  // Customer.find({
-  //   // name: { $regex: new RegExp(req.query.q, 'i')}
-  // })
+  
   Customer.find()
+    .sort({date:-1})
     .then(customers => res.json(customers))
     .catch(err => res.status(400).json('Error:' + err));
 });

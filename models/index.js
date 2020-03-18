@@ -1,4 +1,4 @@
-module.exports = {
-  Beauty: require("./beauty")
-};
+// module.exports = {
+//   Beauty: require("./beauty")
+// };
 

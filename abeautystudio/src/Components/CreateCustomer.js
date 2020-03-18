@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+
 
 class CreateCustomer extends Component {
     constructor(props){
@@ -19,16 +21,24 @@ class CreateCustomer extends Component {
         phone:0,
         service:"",
         date:new Date(),
-        services:[]
+        // services:[]
     }
 }
 
 
 componentDidMount(){
-    this.setState({
-        task : 'task test',
-        service : 'service test'
-    })
+    axios.get("http://localhost:3000/services/")
+        .then(response =>{
+            if (response.data.length > 0){
+                this.setState({
+                    services : response.data.map(service=> service.service),
+                    service : response.data[0].service
+                   
+                })
+                console.log(response.data);
+            }
+        })
+   
 }
 
     onChangeName(e) {
@@ -59,7 +69,6 @@ componentDidMount(){
         });
     }
 
-
     onSubmit(e){
         e.preventDefault();
 
@@ -73,10 +82,11 @@ componentDidMount(){
 
         console.log(customer);
 
-        window.location = "/";
+        axios.post("http://localhost:3000/customers/create", customer)
+            .then(res=> console.log(res.data));
+
+        window.location = "/create";
     }
-
-
 
     render() {
         return (
@@ -84,11 +94,12 @@ componentDidMount(){
                 <h1>Create New Customer</h1>
                 <form onSubmit = {this.onSubmit}>
                     <div className = "form-group">
-                        <label>Name</label>
+                        <label htmlFor=''>Name</label>
+                        {/* htmlFor='sk-img-upload' */}
                         <input 
                         type="text" 
                         className="form-control" 
-                        value="{this.state.name" 
+                        value={this.state.name}
                         onChange= {this.onChangeName} />
                     </div>
 
@@ -97,7 +108,7 @@ componentDidMount(){
                         <input 
                         type="email" 
                         className="form-control" 
-                        value="{this.state.email" 
+                        value={this.state.email} 
                         onChange= {this.onChangeEmail} />
                     </div>
 
@@ -106,26 +117,27 @@ componentDidMount(){
                         <input 
                         type="number" 
                         className="form-control" 
-                        value="{this.state.phone" 
+                        value={this.state.phone}
                         onChange= {this.onChangePhone} />
                     </div>
 
                     <div className = "form-group">
                         <label>Service</label>
-                        <select  
-                        ref="userInput" 
-                        required
+                        <input 
+                        type="text" 
+                        // ref="userInput" 
+                        // required
                         className="form-control" 
-                        value="{this.state.service" 
+                        value={this.state.service} 
                         onChange= {this.onChangeService} />
-                        {
-                            this.state.services.map(function(task){
+                        {/* {
+                            this.state.services.map(function(service){
                                 return <option 
-                                    key = {task}
-                                    value={task}>{task}
+                                    key = {service}
+                                    value={service}>{service}
                                 </option>
                             })
-                        }
+                        } */}
 
                     </div>
 
@@ -134,14 +146,14 @@ componentDidMount(){
                         <div>
                         <DatePicker 
                         selected = {this.state.date}
-                        onChange= {this.onChangeName} />
+                        onChange= {this.onChangeDate} />
                         </div>
                     </div>
 
                     <div className="form-group">
                         <input 
                         type = "submit" 
-                        value = "Create New Customer" 
+                        value = "Check In" 
                         className = "btn btn-primary" />
                     </div>
 
