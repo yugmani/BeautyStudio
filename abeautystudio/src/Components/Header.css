@@ -24,7 +24,7 @@
 }
 
 .nav {
-  width:40%;
+  width:50%;
   margin:20px 10px 20px 10px;
   display: flex;
   flex-direction: row;
@@ -54,11 +54,11 @@
 }
 
 
-a {
+Link {
   text-decoration:none;
 }
 
-a:hover {
+Link:hover {
   color:gold;
   font-weight:bolder;
   transition:1s;

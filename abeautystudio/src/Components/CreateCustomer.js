@@ -1,8 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import Select from 'react-select';
 
+
+// import Amenities from "./Amenities";
+// import Testimonials from "./Testimonials";
+// import Contact from './Contact';
+// import Footer from "./Footer";
+// import CreateService from "./CreateService";
+
+import { Link } from "react-router-dom";
 
 class CreateCustomer extends Component {
     constructor(props){
@@ -21,13 +30,19 @@ class CreateCustomer extends Component {
         phone:0,
         service:"",
         date:new Date(),
-        // services:[]
+        services:[]
     }
 }
 
 
 componentDidMount(){
-    axios.get("http://localhost:3000/services/")
+    /*this.setState({
+        services: ['test user'],
+        service:'test user'
+    })
+    
+*/
+   axios.get("http://localhost:5000/services")
         .then(response =>{
             if (response.data.length > 0){
                 this.setState({
@@ -38,7 +53,7 @@ componentDidMount(){
                 console.log(response.data);
             }
         })
-   
+
 }
 
     onChangeName(e) {
@@ -69,33 +84,40 @@ componentDidMount(){
         });
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
 
         const customer = {
-            name:this.state.name,
-            email:this.state.email,
-            phone:this.state.phone,
-            service:this.state.service,
-            date:this.state.date
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            service: this.state.service,
+            date: this.state.date
         }
 
         console.log(customer);
 
-        axios.post("http://localhost:3000/customers/create", customer)
+        axios.post("http://localhost:5000/customers/create", customer)
             .then(res=> console.log(res.data));
-
-        window.location = "/create";
+         
+        window.location = "/";
     }
 
     render() {
         return (
-            <div>
-                <h1>Create New Customer</h1>
+            <div className="wrapper">
+                <h1 className="welcomepage">Create New Customer</h1>
+                <div className="nav">
+                <Link to="/" className="">HOME</Link>
+                <Link to="/list" className="">CUSTOMERLIST</Link>
+                <Link to="/addService" className="">serviceList</Link>
+                {/* <Link to="/amenities" className="">SERVICES</Link> */}
+                <Link to="/addService" className="">CreateService</Link>
+                </div>
                 <form onSubmit = {this.onSubmit}>
                     <div className = "form-group">
-                        <label htmlFor=''>Name</label>
-                        {/* htmlFor='sk-img-upload' */}
+                        {/* <label htmlFor=''>Name</label> */}
+                        Name:<br />
                         <input 
                         type="text" 
                         className="form-control" 
@@ -104,7 +126,8 @@ componentDidMount(){
                     </div>
 
                     <div className = "form-group">
-                        <label>Email</label>
+                        {/* <label>Email</label> */}
+                        Email:<br />
                         <input 
                         type="email" 
                         className="form-control" 
@@ -113,7 +136,8 @@ componentDidMount(){
                     </div>
 
                     <div className = "form-group">
-                        <label>Phone</label>
+                        {/* <label>Phone</label> */}
+                        Phone:<br />
                         <input 
                         type="number" 
                         className="form-control" 
@@ -122,27 +146,29 @@ componentDidMount(){
                     </div>
 
                     <div className = "form-group">
-                        <label>Service</label>
-                        <input 
-                        type="text" 
-                        // ref="userInput" 
-                        // required
+                        {/* <label>Service</label> */}
+                        Service:<br />
+                        <select 
+                        // type="text" 
+                        ref="userInput" 
+                        required
                         className="form-control" 
                         value={this.state.service} 
-                        onChange= {this.onChangeService} />
-                        {/* {
+                        onChange= {this.onChangeService} >
+                        {
                             this.state.services.map(function(service){
                                 return <option 
                                     key = {service}
                                     value={service}>{service}
                                 </option>
                             })
-                        } */}
-
+                        }
+                        </select>
                     </div>
 
                     <div className = "form-group">
-                        <label>Date</label>
+                        {/* <label>Date</label> */}
+                        Date:<br />
                         <div>
                         <DatePicker 
                         selected = {this.state.date}
@@ -164,4 +190,4 @@ componentDidMount(){
     }
 }
 
-export default CreateCustomer
+export default CreateCustomer;

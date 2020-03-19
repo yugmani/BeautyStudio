@@ -1,11 +1,14 @@
 {
-  "name": "beautystudio",
+  "name": "beauty",
   "version": "1.0.0",
   "description": "beauty parlor application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    
+    "abeautystudio-install": "npm install --prefix abeautystudio",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "abeautystudio": "npm start --prefix abeautystudio",
+    "dev": "concurrently \"npm run server\" \"npm run abeautystudio\""
   },
   "repository": {
     "type": "git",
@@ -18,9 +21,11 @@
   },
   "homepage": "https://github.com/yugmani/BeautyStudio",
   "dependencies": {
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.4",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "react-select": "^3.0.8"
   }
 }

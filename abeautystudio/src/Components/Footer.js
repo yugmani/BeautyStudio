@@ -25,7 +25,7 @@ function Footer() {
                     Los Angeles, CA 9006 <br />
                     <br />
                     <h4>Call us:</h4><br />
-                    <i class="fas fa-phone-square-alt">(323) 870-5100</i> 
+                    <i className="fas fa-phone-square-alt">(323) 870-5100</i> 
             </address>
             <div className="socialmedias">
                 <h4>Business Hours</h4>
